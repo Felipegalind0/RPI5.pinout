@@ -3,6 +3,30 @@
 
 ![RPI5](RPI5_PINOUT_OVERLAY.png)
 
+The RP1 has 28 multi-functional General-Purpose Input/Output pins available to implement the standard Raspberry Pi 40-pin
+GPIO connector.
+
+GPIO pins can withstand upto 5V when RP1 is powered, and 3.63V when RP1 is unpowered.
+
+The pins are in a single electrical bank (VDDIO0). The GPIO bank (IO_BANK0) can be powered from 1.8V or 3.3V, but
+interface timings have been specified at 3.3V. 
+
+Each pin can be controlled directly by software, or by a number of other functional blocks.
+
+The bank supports the following functions:
+```
+• 5 × UART
+• 6 × SPI
+• 4 × I2C
+• 2 × I2S - 1× Clock Producer instance, 1× Clock Consumer instance.
+• RIO - Registered IO interface
+• 24-bit DPI output
+• 4-channel PWM output
+• AUDIO_OUT - Stereo PWM audio output
+• GPCLK - General-purpose clock input and output
+• eMMC/SDIO bus with a 4-bit interface
+• Interrupt generation from pin level or edge transitions
+```
 | GPIO Number | Function             |           |              |               |             |              |              |             |             |
 |----------|--------------|-----------|--------------|---------------|-------------|--------------|--------------|-------------|-------------|
 | GPIO#     | F1           | F2        | F3           | F4            | F5          | F6           | F7           | F8          | F9          |
@@ -36,8 +60,16 @@
 | GPIO27   | SDIO0_DAT[3] | DPI_D[23] | I2S0_SDO[3]  | AUDIO_IN_DAT1 | I2S1_SDO[3] | SYS_RIO[27]  | PROC_RIO[27] | PIO[27]     | SPI1_CSn[1] |
 
 
+Each GPIO can have one function selected at a time. Likewise, each peripheral input (e.g. I2C3_SCL) should only be selected on one GPIO at a time. If the same peripheral input is connected to multiple GPIOs, the peripheral sees the logical OR of these GPIO inputs. Function selections without a named function in this list are reserved.
+
+
+To enable a specific UART, add the corresponding overlay to /boot/config.txt. For example, to enable UART 1 on GPIOs 0 and 1, add the following line to /boot/config.txt:
+```
+dtoverlay=uart1-pi5
 ```
 
+# UARTs
+```
 Name:   uart0
 Info:   Change the pin usage of uart0
 Load:   dtoverlay=uart0,<param>=<val>
@@ -111,8 +143,14 @@ Load:   dtoverlay=uart5,<param>
 Params: ctsrts                  Enable CTS/RTS on GPIOs 14-15 (default off)
 ```
 
+Default device tree overlay pinout:
+![RPI5](RPI5_PINOUT.png)
+
+
 Sources:
 
 [RPI5.jgp](https://www.pishop.us/product/raspberry-pi-5-4gb/)
 
 [Raspberry Pi 5 Pinouts](https://community.element14.com/products/raspberry-pi/m/files/148385)
+
+RP1 is a peripheral controller, designed by Raspberry Pi for use on Raspberry Pi 5. It connects to an application processor (AP),the 16nm Broadcom BCM2712, via a PCIe 2.0 x4 bus, and aggregates many digital controllers and analog PHYs for Raspberry Pi 5’s external interfaces.
