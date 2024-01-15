@@ -3,7 +3,7 @@
 
 ![RPI5](RPI5_PINOUT_OVERLAY.png)
 
-The RP1 has 28 multi-functional General-Purpose Input/Output pins available to implement the standard Raspberry Pi 40-pin
+The RP1 on the RPI5 has 28 multi-functional General-Purpose Input/Output pins available on the Raspberry Pi 40-pin
 GPIO connector.
 
 GPIO pins can withstand upto 5V when RP1 is powered, and 3.63V when RP1 is unpowered.
@@ -69,6 +69,21 @@ dtoverlay=uart1-pi5
 ```
 
 # UARTs
+## ⚠️ Warning: UART does *NOT* work on the RPI5 from the factory. 
+A firmware update is required fix a [known issue](https://forums.raspberrypi.com/viewtopic.php?t=361397#p2171244) that prevents the dtoverlays for UARTs from working.
+
+### Fix: 
+Install [rpi-update](https://github.com/Hexxeh/rpi-update) on Ubuntu 23.10 with the following commands:
+```
+sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+```
+Then update the firmware on your RPI5 with:
+
+```
+sudo rpi-update
+```
+
+### dtoverlays for UARTs:
 ```
 Name:   uart0
 Info:   Change the pin usage of uart0
