@@ -68,6 +68,11 @@ To enable a specific UART, add the corresponding overlay to /boot/config.txt. Fo
 dtoverlay=uart1-pi5
 ```
 
+# PCIe & NVMe
+See ['github.com/m1geo/Pi5_PCIe'](https://github.com/m1geo/Pi5_PCIe)
+& [datasheets.raspberrypi.com/pcie/pcie-connector-standard.pdf](https://datasheets.raspberrypi.com/pcie/pcie-connector-standard.pdf)
+
+
 # UARTs
 ## ⚠️ Warning: UART does *NOT* work on the RPI5 from the factory. 
 A firmware update is required fix a [known issue](https://forums.raspberrypi.com/viewtopic.php?t=361397#p2171244) that prevents the dtoverlays for UARTs from working.
