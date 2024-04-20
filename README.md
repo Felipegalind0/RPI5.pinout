@@ -88,6 +88,149 @@ Then update the firmware on your RPI5 with:
 sudo rpi-update
 ```
 
+### [dtoverlays](https://raw.githubusercontent.com/raspberrypi/firmware/master/boot/overlays/README) for I2C:
+
+```
+        i2c                     An alias for i2c_arm
+
+        i2c_arm                 Set to "on" to enable the ARM's i2c interface
+                                (default "off")
+
+        i2c_arm_baudrate        Set the baudrate of the ARM's i2c interface
+                                (default "100000")
+
+        i2c_baudrate            An alias for i2c_arm_baudrate
+
+        i2c_csi_dsi             Set to "on" to enable the i2c_csi_dsi interface
+
+        i2c_csi_dsi0            Set to "on" to enable the i2c_csi_dsi0 interface
+
+        i2c_csi_dsi1            Set to "on" to enable the i2c_csi_dsi1 interface
+
+        i2c_vc                  Set to "on" to enable the i2c interface
+                                usually reserved for the VideoCore processor
+                                (default "off")
+
+        i2c_vc_baudrate         Set the baudrate of the VideoCore i2c interface
+                                (default "100000")
+```
+
+```
+Name:   i2c0
+Info:   Change i2c0 pin usage. Not all pin combinations are usable on all
+        platforms - platforms other then Compute Modules can only use this
+        to disable transaction combining.
+        Do NOT use in conjunction with dtparam=i2c_vc=on. From the 5.4 kernel
+        onwards the base DT includes the use of i2c_mux_pinctrl to expose two
+        muxings of BSC0 - GPIOs 0&1, and whichever combination is used for the
+        camera and display connectors. This overlay disables that mux and
+        configures /dev/i2c0 to point at whichever set of pins is requested.
+        dtparam=i2c_vc=on will try and enable the mux, so combining the two
+        will cause conflicts.
+Load:   dtoverlay=i2c0,<param>=<val>
+Params: pins_0_1                Use pins 0 and 1 (default)
+        pins_28_29              Use pins 28 and 29
+        pins_44_45              Use pins 44 and 45
+        pins_46_47              Use pins 46 and 47
+        combine                 Allow transactions to be combined (default
+                                "yes")
+
+
+Name:   i2c0-bcm2708
+Info:   Deprecated, legacy version of i2c0.
+Load:   <Deprecated>
+
+
+Name:   i2c0-pi5
+Info:   Enable i2c0 (Pi 5 only)
+Load:   dtoverlay=i2c0-pi5,<param>=<val>
+Params: pins_0_1                Use GPIOs 0 and 1 (default)
+        pins_8_9                Use GPIOs 8 and 9
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+
+
+Name:   i2c1
+Info:   Change i2c1 pin usage. Not all pin combinations are usable on all
+        platforms - platforms other then Compute Modules can only use this
+        to disable transaction combining.
+Load:   dtoverlay=i2c1,<param>=<val>
+Params: pins_2_3                Use pins 2 and 3 (default)
+        pins_44_45              Use pins 44 and 45
+        combine                 Allow transactions to be combined (default
+                                "yes")
+
+
+Name:   i2c1-bcm2708
+Info:   Deprecated, legacy version of i2c1.
+Load:   <Deprecated>
+
+
+Name:   i2c1-pi5
+Info:   Enable i2c1 (Pi 5 only)
+Load:   dtoverlay=i2c1-pi5,<param>=<val>
+Params: pins_2_3                Use GPIOs 2 and 3 (default)
+        pins_10_11              Use GPIOs 10 and 11
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+
+
+Name:   i2c2-pi5
+Info:   Enable i2c2 (Pi 5 only)
+Load:   dtoverlay=i2c2-pi5,<param>=<val>
+Params: pins_4_5                Use GPIOs 4 and 5 (default)
+        pins_12_13              Use GPIOs 12 and 13
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+
+
+Name:   i2c3
+Info:   Enable the i2c3 bus. BCM2711 only.
+Load:   dtoverlay=i2c3,<param>
+Params: pins_2_3                Use GPIOs 2 and 3
+        pins_4_5                Use GPIOs 4 and 5 (default)
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+
+
+Name:   i2c3-pi5
+Info:   Enable i2c3 (Pi 5 only)
+Load:   dtoverlay=i2c3-pi5,<param>=<val>
+Params: pins_6_7                Use GPIOs 6 and 7 (default)
+        pins_14_15              Use GPIOs 14 and 15
+        pins_22_23              Use GPIOs 22 and 23
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+
+
+Name:   i2c4
+Info:   Enable the i2c4 bus. BCM2711 only.
+Load:   dtoverlay=i2c4,<param>
+Params: pins_6_7                Use GPIOs 6 and 7
+        pins_8_9                Use GPIOs 8 and 9 (default)
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+
+
+Name:   i2c5
+Info:   Enable the i2c5 bus. BCM2711 only.
+Load:   dtoverlay=i2c5,<param>
+Params: pins_10_11              Use GPIOs 10 and 11
+        pins_12_13              Use GPIOs 12 and 13 (default)
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+
+
+Name:   i2c6
+Info:   Enable the i2c6 bus. BCM2711 only.
+Load:   dtoverlay=i2c6,<param>
+Params: pins_0_1                Use GPIOs 0 and 1
+        pins_22_23              Use GPIOs 22 and 23 (default)
+        baudrate                Set the baudrate for the interface (default
+                                "100000")
+```
+
+
 ### [dtoverlays](https://raw.githubusercontent.com/raspberrypi/firmware/master/boot/overlays/README) for UARTs:
 ```
 Name:   uart0
