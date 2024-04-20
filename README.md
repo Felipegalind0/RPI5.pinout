@@ -91,6 +91,13 @@ sudo rpi-update
 ### [dtoverlays](https://raw.githubusercontent.com/raspberrypi/firmware/master/boot/overlays/README) for I2C:
 
 ```
+dtoverlay=i2c0-pi5,pins_8_9
+dtoverlay=i2c1-pi5,pins_10_11
+dtoverlay=i2c2-pi5,pins_12_13
+#dtoverlay=i2c3-pi5,pins_22_23 #default 14-15: ! same as UART0
+```
+
+```
         i2c                     An alias for i2c_arm
 
         i2c_arm                 Set to "on" to enable the ARM's i2c interface
