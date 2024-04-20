@@ -88,7 +88,7 @@ Then update the firmware on your RPI5 with:
 sudo rpi-update
 ```
 
-### dtoverlays for UARTs:
+### [dtoverlays](https://raw.githubusercontent.com/raspberrypi/firmware/master/boot/overlays/README) for UARTs:
 ```
 Name:   uart0
 Info:   Change the pin usage of uart0
