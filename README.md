@@ -416,3 +416,10 @@ https://amzn.to/3KRpu2R
 
 Upgraded geekworm heatsink:
 https://amzn.to/499peGl
+
+---
+
+## 📚 Further Reading
+
+- [raspberry.tips — Raspberry Pi 5 GPIO Pinout](https://raspberry.tips/raspberry-pi-gpio-pinout)
+  Visual and interactive Pi 5 pinout reference with HAT overlays and function search, updated for the RP1 controller
